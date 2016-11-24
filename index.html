@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <div id="async-msg">async</div>
+    <div id="async-reply"></div>
+    <script type="text/javascript">
+      const ipc = require('electron').ipcRenderer
+
+      ipc.send('login-confirm', 'ping')
+      ipc.on('login-confirm-reply', function (event, arg) {
+        console.log(arg)
+        const message = `Asynchronous message reply: ${arg}`
+        document.getElementById('async-reply').innerHTML = message
+      })
+    </script>
+  </body>
+</html>
