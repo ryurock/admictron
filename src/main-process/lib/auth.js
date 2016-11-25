@@ -71,7 +71,7 @@ class Auth {
         auth: this.oAuth2Client
       }, (err, response) => {
         if (err) {
-          if (this.authenticated == false && err.code == 401) return retryAuthenticate()
+          if (this.authenticated == false && err.code == 401) return this.retryAuthenticate()
           return reject(err)
         }
 
@@ -106,10 +106,12 @@ class Auth {
       return this.tryFetchTokenFromGoogle()
     })
     .then((tokenAndAuthenticated) => {
-      return this.setAuthenticatedAndCredentials(tokenAndAuthenticated)
+      //@todo debug用にコメントアウト
+      //return this.setAuthenticatedAndCredentials(tokenAndAuthenticated)
     })
     .then(() => {
-      return this.fetchUserMeFromGoogle()
+      //@todo debug用にコメントアウト
+      //return this.fetchUserMeFromGoogle()
     })
   }
 
