@@ -10,16 +10,16 @@
     Chrome <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
 
-    <div id="async-msg">async</div>
-    <div id="async-reply"></div>
+    <div id="username"></div>
+    <img id="userthumb" src="" />
     <script type="text/javascript">
       const ipc = require('electron').ipcRenderer
 
-      ipc.send('login-confirm', 'ping')
-      ipc.on('login-confirm-reply', function (event, arg) {
+      ipc.send('auth', 'ping')
+      ipc.on('auth-reply', function (event, arg) {
         console.log(arg)
-        const message = `Asynchronous message reply: ${arg}`
-        document.getElementById('async-reply').innerHTML = message
+        document.getElementById('username').innerHTML = arg.user.name
+        document.getElementById('userthumb').src = arg.user.thumbnail
       })
     </script>
   </body>

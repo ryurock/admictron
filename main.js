@@ -4,11 +4,8 @@ const ipc = require('electron').ipcMain
 const path = require('path')
 const Url = require('url')
 
-const authGoogle = require('./src/main-process/lib/auth-google')
+const Auth = require('./src/main-process/lib/auth')
 
-
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let win
 
 function createWindow () {
@@ -49,19 +46,11 @@ app.on('activate', () => {
   }
 })
 
-ipc.on('login-confirm', function (event, _) {
-  authGoogle.auth(win, function(error, response){
-    let user = null
-    if (!error) {
-      user = {
-        email: response.emails[0].value,
-        name: response.displayName,
-        thumbnail: response.image.url
-      }
-    }
-
-    event.sender.send('login-confirm-reply', {
-      user: user,
+ipc.on('auth', function (event, _) {
+  auth = new Auth(win)
+  auth.authenticate(function(error, response){
+    event.sender.send('auth-reply', {
+      user: response,
       error: error
     })
   })
