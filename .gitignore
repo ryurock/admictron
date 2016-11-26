@@ -35,3 +35,4 @@ bower_components
 .node_repl_history
 
 config/google-secret.json
+javascripts/bundle.js

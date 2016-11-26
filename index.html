@@ -5,22 +5,9 @@
     <title>Hello World!</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-
+    <div id="app"></div>
     <div id="username"></div>
     <img id="userthumb" src="" />
-    <script type="text/javascript">
-      const ipc = require('electron').ipcRenderer
-
-      ipc.send('auth', 'ping')
-      ipc.on('auth-reply', function (event, arg) {
-        console.log(arg)
-        document.getElementById('username').innerHTML = arg.user.name
-        document.getElementById('userthumb').src = arg.user.thumbnail
-      })
-    </script>
+    <script type="text/javascript" src="javascripts/bundle.js" charset="utf-8"></script>
   </body>
 </html>

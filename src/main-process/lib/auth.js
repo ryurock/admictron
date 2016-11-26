@@ -106,12 +106,10 @@ class Auth {
       return this.tryFetchTokenFromGoogle()
     })
     .then((tokenAndAuthenticated) => {
-      //@todo debug用にコメントアウト
-      //return this.setAuthenticatedAndCredentials(tokenAndAuthenticated)
+      return this.setAuthenticatedAndCredentials(tokenAndAuthenticated)
     })
     .then(() => {
-      //@todo debug用にコメントアウト
-      //return this.fetchUserMeFromGoogle()
+      return this.fetchUserMeFromGoogle()
     })
   }
 
@@ -159,6 +157,7 @@ class Auth {
 
   loadTokenFromApplicationStorage () {
     return new Promise((resolve, reject) => {
+      // path ~/Library/Application Support/<package.json[name]>
       storage.get('tokens', function(error, tokens) {
         if (empty(tokens)) return reject()
         return resolve({token: tokens, authenticated: false})
