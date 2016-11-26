@@ -6,6 +6,15 @@
     "electron-json-storage": "^2.1.0",
     "googleapis": "^14.2.0",
     "is-empty": "^1.0.0",
-    "query-string": "^4.2.3"
+    "query-string": "^4.2.3",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "scripts": {
+    "start": "webpack && electron ."
+  },
+  "devDependencies": {
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   }
 }
