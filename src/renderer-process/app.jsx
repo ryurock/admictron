@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 
 import Clock from './components/username.jsx'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const ipc = require('electron').ipcRenderer
 
@@ -12,7 +14,11 @@ ipc.on('auth-reply', function (event, arg) {
 })
 
 ReactDOM.render(
-  <Clock />,
+  <div>
+    <MuiThemeProvider>
+      <RaisedButton label="Default" />
+    </MuiThemeProvider>
+  </div>,
   document.getElementById('app')
 );
 
