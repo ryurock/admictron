@@ -11,7 +11,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
 
-import Clock from './components/username.jsx'
 import AppBarUser from './components/app-bar/user.jsx'
 
 const ipc = require('electron').ipcRenderer
