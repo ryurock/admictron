@@ -6,7 +6,7 @@ import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
-class AppBarUser extends React.Component {
+class AppBarRightIconMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,4 +49,4 @@ class AppBarUser extends React.Component {
     );
   }
 }
-export default AppBarUser
+export default AppBarRightIconMenu
