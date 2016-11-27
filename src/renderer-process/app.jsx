@@ -7,7 +7,6 @@ const ipc = require('electron').ipcRenderer
 
 ipc.send('auth', 'ping')
 ipc.on('auth-reply', function (event, arg) {
-  console.log(arg)
   document.getElementById('username').innerHTML = arg.user.name
   document.getElementById('userthumb').src = arg.user.thumbnail
 })

@@ -31,16 +31,20 @@ class Auth {
     this.authorizationDomains.deny = domains
   }
 
+  setCallbackUrl(url) {
+    this.callbackUrl = url
+  }
+
   authenticate (callback) {
     Promise.resolve()
     .then(() => {
       return this.loadTokenFromApplicationStorage()
     })
-    .catch(() => {
-      return this.tryFetchTokenFromGoogle()
-    })
     .then((tokenAndAuthenticated) => {
       return this.setAuthenticatedAndCredentials(tokenAndAuthenticated)
+    })
+    .catch(() => {
+      return this.tryFetchTokenFromGoogle()
     })
     .then(() => {
       return this.fetchUserMeFromGoogle()
@@ -108,9 +112,6 @@ class Auth {
     .then((tokenAndAuthenticated) => {
       return this.setAuthenticatedAndCredentials(tokenAndAuthenticated)
     })
-    .then(() => {
-      return this.fetchUserMeFromGoogle()
-    })
   }
 
   tryFetchTokenFromGoogle () {
@@ -150,8 +151,14 @@ class Auth {
       this.browser.webContents.on('did-get-redirect-request', (event, oldUrl, newUrl) => {
         let query = queryString.parse(Url.parse(newUrl).query)
         if (query.error || !query.code) return reject(query.error, null)
+        this.browser.loadURL(Url.format({
+            pathname: this.callbackUrl,
+            protocol: 'file:',
+            slashes: true
+        }))
         return resolve(query.code)
       })
+
     })
   }
 

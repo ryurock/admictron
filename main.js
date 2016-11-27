@@ -48,6 +48,7 @@ app.on('activate', () => {
 
 ipc.on('auth', function (event, _) {
   auth = new Auth(win)
+  auth.setCallbackUrl(path.join(__dirname, 'index.html'))
   auth.authenticate(function(error, response){
     event.sender.send('auth-reply', {
       user: response,
