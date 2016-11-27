@@ -1,6 +1,10 @@
 import React from 'react'
 import FlatButton from 'material-ui/FlatButton'
 import Avatar from 'material-ui/Avatar'
+import IconButton from 'material-ui/IconButton'
+import IconMenu from 'material-ui/IconMenu'
+import MenuItem from 'material-ui/MenuItem'
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 class AppBarUser extends React.Component {
   constructor(props) {
@@ -31,11 +35,18 @@ class AppBarUser extends React.Component {
           />
         </li>
         <li className="app-bar-right-list">
-          <FlatButton label={this.state.user.name} />
+          <IconMenu
+            iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+            targetOrigin={{horizontal: 'right', vertical: 'top'}}
+            anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+            >
+              <MenuItem primaryText={this.state.user.name} disabled={true} />
+              <MenuItem primaryText="Help" />
+              <MenuItem primaryText="Sign out" />
+          </IconMenu>
         </li>
       </ul>
     );
   }
 }
-
 export default AppBarUser
