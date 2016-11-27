@@ -10,6 +10,12 @@
 
 ## QuickStart
 
+### Google API Console via secret.json
+
+see @todo
+
+### Start Electron 
+
 ```
 npm start
 ```
