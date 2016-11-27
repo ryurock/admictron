@@ -10,8 +10,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
+import AppBarUser from './components/appBar/user.jsx'
 
-import AppBarUser from './components/app-bar/user.jsx'
 
 const ipc = require('electron').ipcRenderer
 ipc.send('auth', 'ping')
