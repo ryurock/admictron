@@ -1,5 +1,6 @@
 const {app, BrowserWindow} = require('electron')
 const ipc = require('electron').ipcMain
+const loadDevtool = require('electron-load-devtool');
 
 const path = require('path')
 const Url = require('url')
@@ -19,9 +20,9 @@ function createWindow () {
     slashes: true
   }))
 
+  loadDevtool(loadDevtool.REACT_DEVELOPER_TOOLS);
   // Open the DevTools.
   win.webContents.openDevTools()
-
 
   // Emitted when the window is closed.
   win.on('closed', () => {
