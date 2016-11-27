@@ -1,24 +1,29 @@
+// @see https://github.com/callemall/material-ui/issues/4758
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin()
+
 import React from 'react'
 import ReactDOM from 'react-dom';
 
-import Clock from './components/username.jsx'
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
+
+
+import Clock from './components/username.jsx'
+import AppBarUser from './components/app-bar/user.jsx'
 
 const ipc = require('electron').ipcRenderer
-
 ipc.send('auth', 'ping')
-ipc.on('auth-reply', function (event, arg) {
-  document.getElementById('username').innerHTML = arg.user.name
-  document.getElementById('userthumb').src = arg.user.thumbnail
-})
 
 ReactDOM.render(
-  <div>
-    <MuiThemeProvider>
-      <RaisedButton label="Default" />
-    </MuiThemeProvider>
-  </div>,
+  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <AppBar
+      title="Admictron"
+      iconElementRight={<AppBarUser />}
+    />
+  </MuiThemeProvider>,
   document.getElementById('app')
 );
 
