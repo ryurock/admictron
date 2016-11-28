@@ -10,15 +10,24 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import AppBarMain from './components/appBar/Main.jsx';
-import SampleTable from './components/SampleTable.jsx';
+import MainContent from './components/MainContent.jsx';
 
-ReactDOM.render(
-  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-    <div id="wrapper">
-      <AppBarMain />
-      <SampleTable />
-    </div>
-  </MuiThemeProvider>,
-  document.getElementById('app')
-);
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <div id="wrapper">
+          <AppBarMain />
+          <MainContent />
+        </div>
+      </MuiThemeProvider>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
 
