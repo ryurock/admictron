@@ -11,3 +11,7 @@ body {
   display: inline-block;
   vertical-align: middle;
 }
+
+.tab > div{
+  background-color: #EFEBE9;
+}
