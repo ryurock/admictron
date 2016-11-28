@@ -5,6 +5,7 @@ import IconButton from 'material-ui/IconButton'
 import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import {ipcRenderer} from 'electron';
 
 class AppBarRightIconMenu extends React.Component {
   constructor(props) {
@@ -19,8 +20,8 @@ class AppBarRightIconMenu extends React.Component {
 
   componentDidMount() {
     let setState = this.setState
-    const ipc = require('electron').ipcRenderer
-    ipc.on('auth-reply', (event, arg) => {
+    ipcRenderer.send('auth', 'ping')
+    ipcRenderer.on('auth-reply', (event, arg) => {
       this.setState({user: arg.user})
     })
   }

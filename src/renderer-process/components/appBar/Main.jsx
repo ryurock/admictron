@@ -1,8 +1,5 @@
 import React from 'react'
 
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 
 import AppBarRightIconMenu from './RightIconMenu.jsx'
@@ -20,19 +17,17 @@ class AppBarMain extends React.Component {
 
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <div id="wrapper">
-          <AppBar
-            title="Admictron"
-            onLeftIconButtonTouchTap={this.handleTouchLeftDrawer.bind(this)}
-            iconElementRight={<AppBarRightIconMenu />}
-          />
-          <LeftDrawer
-            open={this.state.open}
-            onLeftDrawerMenuItemCloseTouchTap={this.handleTouchLeftDrawer.bind(this)}
-          />
-        </div>
-      </MuiThemeProvider>
+      <div id="app-bar">
+        <AppBar
+          title="Admictron"
+          onLeftIconButtonTouchTap={this.handleTouchLeftDrawer.bind(this)}
+          iconElementRight={<AppBarRightIconMenu />}
+        />
+        <LeftDrawer
+          open={this.state.open}
+          onLeftDrawerMenuItemCloseTouchTap={this.handleTouchLeftDrawer.bind(this)}
+        />
+      </div>
     )
   }
 }
