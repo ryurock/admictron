@@ -12,6 +12,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBarMain from './components/appBar/Main.jsx';
 import MainContent from './components/MainContent.jsx';
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
